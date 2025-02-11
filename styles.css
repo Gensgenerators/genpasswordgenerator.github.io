@@ -212,12 +212,6 @@ input[type="text"]:focus {
     border-color: #1E88E5; /* Slightly darker blue */
 }
 
-/* Adsense Ad Placement */
-.adsense-ad {
-    margin-top: 30px; /* Increased margin */
-    text-align: center;
-}
-
 /* Dark Mode Toggle */
 .dark-mode-toggle {
     display: flex;
