@@ -45,34 +45,42 @@
             <label for="length">Password Length: <span id="lengthValue">12</span></label>
             <input type="range" id="length" value="12" min="4" max="50">
             <div class="checkbox-group">
-                <label class="toggle-label">
-                    Numbers
-                    <label class="switch">
-                        <input type="checkbox" id="includeNumbers" checked>
-                        <span class="slider round"></span>
+                <div class="toggle-container">
+                    <label class="toggle-label">
+                        Numbers
+                        <label class="switch">
+                            <input type="checkbox" id="includeNumbers" checked>
+                            <span class="slider round"></span>
+                        </label>
                     </label>
-                </label>
-                <label class="toggle-label">
-                    Special
-                    <label class="switch">
-                        <input type="checkbox" id="includeSpecial" checked>
-                        <span class="slider round"></span>
+                </div>
+                <div class="toggle-container">
+                    <label class="toggle-label">
+                        Special
+                        <label class="switch">
+                            <input type="checkbox" id="includeSpecial" checked>
+                            <span class="slider round"></span>
+                        </label>
                     </label>
-                </label>
-                <label class="toggle-label">
-                    Uppercase
-                    <label class="switch">
-                        <input type="checkbox" id="includeUppercase" checked>
-                        <span class="slider round"></span>
+                </div>
+                <div class="toggle-container">
+                    <label class="toggle-label">
+                        Uppercase
+                        <label class="switch">
+                            <input type="checkbox" id="includeUppercase" checked>
+                            <span class="slider round"></span>
+                        </label>
                     </label>
-                </label>
-                <label class="toggle-label">
-                    Lowercase
-                    <label class="switch">
-                        <input type="checkbox" id="includeLowercase" checked>
-                        <span class="slider round"></span>
+                </div>
+                <div class="toggle-container">
+                    <label class="toggle-label">
+                        Lowercase
+                        <label class="switch">
+                            <input type="checkbox" id="includeLowercase" checked>
+                            <span class="slider round"></span>
+                        </label>
                     </label>
-                </label>
+                </div>
             </div>
             <button id="generate">Generate Password</button>
         </div>
@@ -91,8 +99,6 @@
             </div>
         </div>
     </div>
-
-
     <script src="script.js"></script>
 </body>
 </html>
