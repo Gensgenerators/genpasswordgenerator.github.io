@@ -3,11 +3,11 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
     margin: 0;
-    display: flex; /* Use Flexbox for layout */
-    flex-direction: column; /* Stack elements vertically */
-    min-height: 100vh; /* Ensure the body takes at least full viewport height */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     transition: background-color 0.3s ease, color 0.3s ease;
-    padding: 20px; /* Add padding to the body */
+    padding: 20px;
 }
 .container {
     background-color: white;
@@ -23,53 +23,49 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px; /* Increased margin */
+    margin-bottom: 30px;
 }
 h1 {
     margin: 0;
     color: #333;
-    transition: color 0.3s ease;
 }
 p {
     text-align: center;
     color: #666;
-    margin-bottom: 30px; /* Increased margin */
-    transition: color 0.3s ease;
+    margin-bottom: 30px;
 }
 .settings {
-    margin-bottom: 40px; /* Increased margin */
+    margin-bottom: 40px;
 }
 input[type="range"] {
     -webkit-appearance: none;
-    appearance: none; /* Standard property */
+    appearance: none;
     width: 100%;
     height: 8px;
     background: #ddd;
     border-radius: 5px;
     outline: none;
-    margin-bottom: 20px; /* Increased margin */
-    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
 }
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    appearance: none; /* Standard property */
+    appearance: none;
     width: 20px;
     height: 20px;
-    background: #1E88E5; /* Slightly darker blue */
+    background: #1E88E5;
     border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 input[type="range"]:focus::-webkit-slider-thumb {
-    background-color: #1976D2; /* Darker blue on focus */
+    background-color: #1976D2;
 }
 /* Toggle Switch Styling */
 .switch {
     position: relative;
     display: inline-block;
-    width: 55px; /* Reduced width */
-    height: 28px; /* Reduced height */
-    margin-left: 5px; /* Added margin to the left of the switch */
+    width: 55px;
+    height: 28px;
+    margin-left: 5px;
 }
 .switch input {
     opacity: 0;
@@ -85,42 +81,42 @@ input[type="range"]:focus::-webkit-slider-thumb {
     bottom: 0;
     background-color: #ccc;
     transition: 0.4s;
-    border-radius: 14px; /* Adjusted radius for new height */
-    -webkit-appearance: none; /* For WebKit-based browsers */
-    appearance: none; /* Standard property */
+    border-radius: 14px;
 }
 .slider:before {
     position: absolute;
     content: "";
-    height: 22px; /* Reduced height */
-    width: 22px; /* Reduced width */
+    height: 22px;
+    width: 22px;
     left: 3px;
     bottom: 3px;
     background-color: white;
     transition: 0.4s;
     border-radius: 50%;
-    -webkit-appearance: none; /* For WebKit-based browsers */
-    appearance: none; /* Standard property */
 }
 input:checked + .slider {
-    background-color: #1E88E5; /* Slightly darker blue */
+    background-color: #1E88E5;
 }
 input:focus + .slider {
-    box-shadow: 0 0 1px #1E88E5; /* Slightly darker blue */
+    box-shadow: 0 0 1px #1E88E5;
 }
 input:checked + .slider:before {
-    transform: translateX(28px); /* Adjusted translation for new dimensions */
+    transform: translateX(28px);
 }
 /* Toggle Label Adjustments */
 .toggle-label {
     display: inline-flex;
     align-items: center;
-    gap: 5px; /* Reduced gap to bring names closer */
-    margin-bottom: 10px; /* Added margin to separate toggle labels */
+    gap: 5px;
+    margin-bottom: 10px;
+}
+/* New Toggle Container */
+.toggle-container {
+    margin-bottom: 10px; /* Added margin to separate each toggle container */
 }
 /* Password Strength Progress Bar */
 .strength-output {
-    margin-top: 20px; /* Increased margin */
+    margin-top: 20px;
 }
 .progress-bar {
     width: 100%;
@@ -128,28 +124,23 @@ input:checked + .slider:before {
     background-color: #eaeaea;
     border-radius: 5px;
     overflow: hidden;
-    background: linear-gradient(to right, #eaeaea, #d3d3d3); /* Subtle gradient */
 }
 .progress-fill {
     height: 100%;
     transition: width 0.3s ease;
 }
 .strength-text {
-    margin-top: 10px; /* Increased margin */
+    margin-top: 10px;
     font-weight: bold;
-    transition: color 0.3s ease;
 }
-/* Inline Copy Notification */
 #copyNotification {
     display: none;
-    color: #1E88E5; /* Slightly darker blue */
+    color: #1E88E5;
     font-size: 14px;
     margin-left: 10px;
-    transition: opacity 0.3s ease;
 }
-/* Buttons */
 button {
-    background-color: #1E88E5; /* Slightly darker blue */
+    background-color: #1E88E5;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -157,14 +148,13 @@ button {
     cursor: pointer;
     width: 100%;
     font-size: 16px;
-    margin-top: 20px; /* Increased margin */
-    transition: background-color 0.3s ease;
+    margin-top: 20px;
 }
 button:hover {
-    background-color: #1976D2; /* Darker blue on hover */
+    background-color: #1976D2;
 }
 button:active {
-    background-color: #1565C0; /* Even darker blue on active */
+    background-color: #1565C0;
 }
 button#copyBtn {
     width: auto;
@@ -178,114 +168,9 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-    transition: border-color 0.3s ease;
-    margin-bottom: 20px; /* Increased margin */
 }
 input[type="text"]:focus {
-    border-color: #1E88E5; /* Slightly darker blue */
-}
-/* Adsense Ad Placement */
-.adsense-ad {
-    margin-top: 40px; /* Increased margin for better spacing */
-    text-align: center;
-}
-/* Dark Mode Toggle */
-.dark-mode-toggle {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Increased gap */
-}
-/* Footer Styling */
-footer {
-    font-size: 10px; /* Small font size */
-    color: #999; /* Subtle gray color */
-    text-align: center;
-    padding: 10px 0; /* Increased padding */
-    background-color: transparent; /* No background for subtlety */
-    margin-top: 30px; /* Increased margin */
-    border-top: 1px solid #ddd; /* Subtle border for separation */
-}
-footer a {
-    color: #666; /* Slightly darker link color */
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-footer a:hover {
-    color: #1E88E5; /* Slightly darker blue */
-    text-decoration: underline; /* Subtle hover effect */
-}
-/* Responsive Design */
-@media (max-width: 600px) {
-    body {
-        padding: 15px; /* Reduced padding for mobile */
-    }
-    .container {
-        padding: 15px;
-    }
-    h1 {
-        font-size: 24px;
-    }
-    .switch {
-        width: 40px; /* Further reduced width for mobile */
-        height: 22px; /* Further reduced height for mobile */
-        margin-left: 3px; /* Reduced margin for mobile */
-    }
-    .slider {
-        border-radius: 11px; /* Adjusted radius for new height */
-    }
-    .slider:before {
-        height: 16px; /* Reduced height */
-        width: 16px; /* Reduced width */
-        left: 3px;
-        bottom: 3px;
-    }
-    input:checked + .slider:before {
-        transform: translateX(18px); /* Adjusted translation for new dimensions */
-    }
-    button {
-        font-size: 14px;
-        padding: 8px 12px;
-    }
-    input[type="text"] {
-        font-size: 14px;
-        padding: 8px;
-    }
-    .dark-mode-toggle {
-        flex-direction: column;
-        align-items: flex-end;
-        margin-top: 20px; /* Increased margin */
-    }
-    .header {
-        margin-bottom: 20px; /* Increased margin */
-    }
-    p {
-        margin-bottom: 20px; /* Increased margin */
-    }
-    .settings {
-        margin-bottom: 30px; /* Increased margin */
-    }
-    .adsense-ad {
-        margin-top: 30px; /* Increased margin for better spacing on mobile */
-    }
-    footer {
-        margin-top: 20px; /* Increased margin */
-        border-top: 1px solid #555; /* Subtle border for separation in dark mode */
-    }
-    .toggle-label {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 10px; /* Reduced gap between toggle labels */
-        margin-bottom: 10px; /* Added margin to separate toggle labels */
-    }
-    .checkbox-group {
-        margin-bottom: 20px; /* Added margin to separate checkbox group from other settings */
-    }
-}
-/* Accessibility Enhancements */
-button:focus, input[type="text"]:focus, .slider:focus {
-    outline: 2px solid #1E88E5; /* Slightly darker blue */
-    outline-offset: 2px;
+    border-color: #1E88E5;
 }
 /* Dark Mode Styles */
 body.dark-mode {
@@ -303,46 +188,13 @@ body.dark-mode p {
     color: #ccc;
 }
 body.dark-mode .settings {
-    margin-bottom: 40px; /* Increased margin */
+    margin-bottom: 40px;
 }
 body.dark-mode input[type="range"] {
     background: #555;
 }
-body.dark-mode input[type="range"]::-webkit-slider-thumb {
-    background: #1E88E5; /* Slightly darker blue */
-}
 body.dark-mode .slider {
     background-color: #555;
-}
-body.dark-mode .slider:before {
-    background-color: #fff;
-}
-body.dark-mode input:checked + .slider {
-    background-color: #1E88E5; /* Slightly darker blue */
-}
-body.dark-mode input:checked + .slider:before {
-    transform: translateX(27px); /* Move inner circle to the right in dark mode */
-}
-body.dark-mode .progress-bar {
-    background-color: #555;
-}
-body.dark-mode .progress-fill {
-    background-color: #1E88E5; /* Slightly darker blue */
-}
-body.dark-mode .strength-text {
-    color: #fff;
-}
-body.dark-mode #copyNotification {
-    color: #1E88E5; /* Slightly darker blue */
-}
-body.dark-mode button {
-    background-color: #1E88E5; /* Slightly darker blue */
-}
-body.dark-mode button:hover {
-    background-color: #1976D2; /* Darker blue on hover */
-}
-body.dark-mode button:active {
-    background-color: #1565C0; /* Even darker blue on active */
 }
 body.dark-mode input[type="text"] {
     border-color: #555;
@@ -354,5 +206,89 @@ body.dark-mode footer a {
     color: #666;
 }
 body.dark-mode footer a:hover {
-    color: #1E88E5; /* Slightly darker blue */
+    color: #1E88E5;
+}
+body.dark-mode .dark-mode-toggle {
+    flex-direction: row;
+    justify-content: space-between;
+}
+body.dark-mode .toggle-label {
+    color: #fff;
+}
+body.dark-mode .progress-bar {
+    background-color: #555;
+}
+body.dark-mode .progress-fill {
+    background-color: #1E88E5;
+}
+/* Mobile Styling */
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+    .container {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    .switch {
+        width: 40px;
+        height: 22px;
+        margin-left: 3px;
+    }
+    .slider {
+        border-radius: 11px;
+    }
+    .slider:before {
+        height: 16px;
+        width: 16px;
+        left: 2px;
+        bottom: 3px;
+    }
+    input:checked + .slider:before {
+        transform: translateX(20px);
+    }
+    button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    .toggle-label {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    .toggle-container {
+        margin-bottom: 0; /* Remove margin since flex direction is column */
+    }
+    .adsense-ad {
+        margin-top: 30px;
+        margin-bottom: 30px; /* Added margin below the ad */
+    }
+    .settings {
+        margin-bottom: 30px;
+    }
+    .password-output {
+        margin-top: 20px;
+    }
+}
+/* Desktop Styling */
+@media (min-width: 601px) {
+    .adsense-ad {
+        margin-top: 40px;
+        margin-bottom: 40px; /* Added margin below the ad */
+    }
+    .settings {
+        margin-bottom: 40px;
+    }
+    .password-output {
+        margin-top: 20px;
+    }
 }
