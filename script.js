@@ -42,17 +42,9 @@ function getPasswordStrength(password) {
     return { strength, color, percentage };
 }
 
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Load dark mode preference from localStorage
-    const darkModePreference = localStorage.getItem('darkMode');
-    if (darkModePreference === 'enabled') {
-        document.body.classList.add('dark-mode');
-        document.getElementById('darkModeToggle').checked = true;
-    }
-    document.getElementById('length').addEventListener('input', function () {
-        document.getElementById('lengthValue').textContent = this.value;
-    });
+document.getElementById('length').addEventListener('input', function () {
+    document.getElementById('lengthValue').textContent = this.value;
+});
 
 document.getElementById('generate').addEventListener('click', function () {
     const length = parseInt(document.getElementById('length').value);
@@ -94,10 +86,28 @@ document.getElementById('copyBtn').addEventListener('click', function () {
 });
 
 // Dark Mode Toggle
-document.getElementById('darkModeToggle').addEventListener('change', function () {
-    if (this.checked) {
+const darkModeToggle = document.getElementById('darkModeToggle');
+
+// Function to apply dark mode based on localStorage
+function applyDarkMode() {
+    if (localStorage.getItem('darkMode') === 'enabled') {
         document.body.classList.add('dark-mode');
+        darkModeToggle.checked = true;
     } else {
         document.body.classList.remove('dark-mode');
+        darkModeToggle.checked = false;
+    }
+}
+
+// Apply dark mode on page load
+applyDarkMode();
+
+darkModeToggle.addEventListener('change', function () {
+    if (this.checked) {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'disabled');
     }
 });
