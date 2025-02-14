@@ -42,9 +42,17 @@ function getPasswordStrength(password) {
     return { strength, color, percentage };
 }
 
-document.getElementById('length').addEventListener('input', function () {
-    document.getElementById('lengthValue').textContent = this.value;
-});
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Load dark mode preference from localStorage
+    const darkModePreference = localStorage.getItem('darkMode');
+    if (darkModePreference === 'enabled') {
+        document.body.classList.add('dark-mode');
+        document.getElementById('darkModeToggle').checked = true;
+    }
+    document.getElementById('length').addEventListener('input', function () {
+        document.getElementById('lengthValue').textContent = this.value;
+    });
 
 document.getElementById('generate').addEventListener('click', function () {
     const length = parseInt(document.getElementById('length').value);
