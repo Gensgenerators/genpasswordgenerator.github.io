@@ -2,51 +2,56 @@ function getPasswordStrength(password) {
     let strength = 'Very Weak';
     let color = 'red';
     let percentage = 20;
+    let feedback = '';
     const hasLowerCase = /[a-z]/.test(password);
     const hasUpperCase = /[A-Z]/.test(password);
     const hasNumbers = /[0-9]/.test(password);
     const hasSpecial = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/.test(password);
-    const length = password.length;
-
-    let criteriaCount = 0;
-    if (hasLowerCase) criteriaCount++;
-    if (hasUpperCase) criteriaCount++;
-    if (hasNumbers) criteriaCount++;
-    if (hasSpecial) criteriaCount++;
-
-    // Calculate score based on length and criteria count
-    let score = criteriaCount * 25 + (length > 8 ? (length - 8) : 0);
-
-    if (score >= 90) {
-        strength = 'Very Good';
-        color = 'green';
-        percentage = 100;
-    } else if (score >= 70) {
-        strength = 'Good';
-        color = 'lightgreen';
-        percentage = 80;
-    } else if (score >= 50) {
-        strength = 'Decent';
-        color = '#FFD700';
-        percentage = 60;
-    } else if (score >= 30) {
-        strength = 'Weak';
-        color = '#FF8C00';
-        percentage = 40;
-    } else {
-        strength = 'Very Weak';
-        color = 'red';
-        percentage = 20;
+    const lengthCriteria = password.length >= 8;
+    const criteriaCount =
+        (hasLowerCase ? 1 : 0) +
+        (hasUpperCase ? 1 : 0) +
+        (hasNumbers ? 1 : 0) +
+        (hasSpecial ? 1 : 0) +
+        (lengthCriteria ? 1 : 0);
+    
+    switch (criteriaCount) {
+        case 0:
+        case 1:
+            strength = 'Very Weak';
+            color = 'red';
+            percentage = 20;
+            feedback = 'Add more character types and increase length.';
+            break;
+        case 2:
+            strength = 'Weak';
+            color = '#FF8C00';
+            percentage = 40;
+            feedback = 'Try adding special characters or uppercase letters.';
+            break;
+        case 3:
+            strength = 'Decent';
+            color = '#FFD700';
+            percentage = 60;
+            feedback = 'Good start! Add more variety or length for strength.';
+            break;
+        case 4:
+            strength = 'Good';
+            color = 'lightgreen';
+            percentage = 80;
+            feedback = 'Almost there! Increase length for maximum security.';
+            break;
+        case 5:
+            strength = 'Very Good';
+            color = 'green';
+            percentage = 100;
+            feedback = 'Excellent password! Very secure.';
+            break;
     }
-
-    return { strength, color, percentage };
+    return { strength, color, percentage, feedback };
 }
 
-document.getElementById('length').addEventListener('input', function () {
-    document.getElementById('lengthValue').textContent = this.value;
-});
-
-document.getElementById('generate').addEventListener('click', function () {
+function generatePassword() {
     const length = parseInt(document.getElementById('length').value);
     const includeNumbers = document.getElementById('includeNumbers').checked;
     const includeSpecial = document.getElementById('includeSpecial').checked;
@@ -67,12 +72,20 @@ document.getElementById('generate').addEventListener('click', function () {
         password += characters[randomIndex];
     }
     document.getElementById('password').value = password;
-    const { strength, color, percentage } = getPasswordStrength(password);
+    const { strength, color, percentage, feedback } = getPasswordStrength(password);
     document.getElementById('progressFill').style.width = `${percentage}%`;
     document.getElementById('progressFill').style.backgroundColor = color;
     document.getElementById('strengthText').textContent = strength;
     document.getElementById('strengthText').style.color = color;
+    document.getElementById('strengthFeedback').textContent = feedback;
+}
+
+document.getElementById('length').addEventListener('input', function () {
+    document.getElementById('lengthValue').textContent = this.value;
 });
+
+document.getElementById('generate').addEventListener('click', generatePassword);
+document.getElementById('regenerate').addEventListener('click', generatePassword);
 
 document.getElementById('copyBtn').addEventListener('click', function () {
     const passwordField = document.getElementById('password');
@@ -86,28 +99,10 @@ document.getElementById('copyBtn').addEventListener('click', function () {
 });
 
 // Dark Mode Toggle
-const darkModeToggle = document.getElementById('darkModeToggle');
-
-// Function to apply dark mode based on localStorage
-function applyDarkMode() {
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        document.body.classList.add('dark-mode');
-        darkModeToggle.checked = true;
-    } else {
-        document.body.classList.remove('dark-mode');
-        darkModeToggle.checked = false;
-    }
-}
-
-// Apply dark mode on page load
-applyDarkMode();
-
-darkModeToggle.addEventListener('change', function () {
+document.getElementById('darkModeToggle').addEventListener('change', function () {
     if (this.checked) {
         document.body.classList.add('dark-mode');
-        localStorage.setItem('darkMode', 'enabled');
     } else {
         document.body.classList.remove('dark-mode');
-        localStorage.setItem('darkMode', 'disabled');
     }
 });
