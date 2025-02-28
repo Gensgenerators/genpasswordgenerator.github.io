@@ -1,379 +1,108 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    padding: 20px;
-}
-.container {
-    background-color: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 750px;
-    margin: 20px auto;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-}
-h1 {
-    margin: 0;
-    color: #333;
-}
-h1 i {
-    margin-right: 8px;
-}
-p {
-    text-align: center;
-    color: #333; /* Darker for better visibility in light mode */
-    margin-bottom: 30px;
-    font-size: 16px;
-}
-.settings {
-    margin-bottom: 40px;
-}
-input[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 8px;
-    background: #ddd;
-    border-radius: 5px;
-    outline: none;
-    margin-bottom: 20px;
-}
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #1E88E5;
-    border-radius: 50%;
-    cursor: pointer;
-}
-input[type="range"]:focus::-webkit-slider-thumb {
-    background-color: #1976D2;
-}
-/* Toggle Switch Styling */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 55px;
-    height: 28px;
-    margin-left: 5px;
-}
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.4s;
-    border-radius: 14px;
-}
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 22px;
-    width: 22px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
-}
-input:checked + .slider {
-    background-color: #1E88E5;
-}
-input:focus + .slider {
-    box-shadow: 0 0 1px #1E88E5;
-}
-input:checked + .slider:before {
-    transform: translateX(28px);
-}
-body.dark-mode input:checked + .slider {
-    background-color: #1E90FF; /* Bright blue for dark mode */
-}
-/* Toggle Label Adjustments */
-.toggle-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    margin-bottom: 10px;
-}
-.toggle-container {
-    margin-bottom: 10px;
-}
-/* Password Strength Progress Bar */
-.strength-output {
-    margin-top: 20px;
-}
-.progress-bar {
-    width: 100%;
-    height: 10px;
-    background-color: #eaeaea;
-    border-radius: 5px;
-    overflow: hidden;
-}
-.progress-fill {
-    height: 100%;
-    transition: width 0.5s ease-in-out, background-color 0.3s ease;
-}
-.strength-text {
-    margin-top: 10px;
-    font-weight: bold;
-}
-.strength-feedback {
-    display: block;
-    font-size: 14px;
-    color: #333; /* Darker for visibility */
-    margin-top: 5px;
-}
-#copyNotification {
-    display: none;
-    color: #1E88E5;
-    font-size: 14px;
-    margin-left: 10px;
-}
-button {
-    background-color: #1E88E5;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-}
-button:hover {
-    background-color: #1976D2;
-}
-button:active {
-    background-color: #1565C0;
-}
-button:focus {
-    outline: 2px solid #1E88E5;
-    outline-offset: 2px;
-}
-.button-group {
-    display: flex;
-    gap: 10px;
-}
-#generate, #regenerate {
-    width: 50%;
-}
-button#copyBtn {
-    width: auto;
-    padding: 8px 12px;
-    margin-left: 10px;
-}
-input[type="text"] {
-    width: calc(100% - 120px);
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-input[type="text"]:focus {
-    border-color: #1E88E5;
-    outline: 2px solid #1E88E5;
-    outline-offset: 2px;
-}
-/* Info Section Styling */
-.info-section {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-}
-.info-section h2 {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 15px;
-}
-.info-section p {
-    text-align: left;
-    color: #333; /* Explicitly set for visibility */
-    margin: 10px 0;
-    font-size: 16px;
-}
-.info-section ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin: 10px 0;
-}
-.info-section li {
-    margin-bottom: 10px;
-    padding-left: 20px;
-    position: relative;
-    color: #333; /* Ensure list items are visible */
-}
-.info-section li:before {
-    content: "\f00c"; /* Font Awesome checkmark */
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    color: #1E88E5;
-    position: absolute;
-    left: 0;
-    top: 2px;
-}
-.info-section strong {
-    color: #333;
-}
-/* Dark Mode Styles */
-body.dark-mode {
-    background-color: #333;
-    color: #ddd; /* Brighter for better contrast in dark mode */
-}
-body.dark-mode .container {
-    background-color: #444;
-    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-}
-body.dark-mode h1 {
-    color: #fff;
-}
-body.dark-mode p {
-    color: #ddd; /* Brighter for visibility in dark mode */
-}
-body.dark-mode .settings {
-    margin-bottom: 40px;
-}
-body.dark-mode input[type="range"] {
-    background: #555;
-}
-body.dark-mode .slider {
-    background-color: #555;
-}
-body.dark-mode input[type="text"] {
-    border-color: #555;
-}
-body.dark-mode .strength-feedback {
-    color: #ddd; /* Brighter for visibility */
-}
-body.dark-mode .progress-bar {
-    background-color: #555;
-}
-body.dark-mode .progress-fill {
-    background-color: #1E88E5;
-}
-body.dark-mode .info-section {
-    border-top-color: #555;
-}
-body.dark-mode .info-section h2 {
-    color: #fff;
-}
-body.dark-mode .info-section p {
-    color: #ddd; /* Ensure info section paragraphs are visible */
-}
-body.dark-mode .info-section li {
-    color: #ddd; /* Ensure list items are visible */
-}
-body.dark-mode .info-section strong {
-    color: #eee;
-}
-body.dark-mode .info-section li:before {
-    color: #1E90FF;
-}
-/* Mobile Styling */
-@media (max-width: 600px) {
-    body {
-        padding: 15px;
+function getPasswordStrength(password) {
+    let strength = 'Very Weak';
+    let color = 'red';
+    let percentage = 20;
+    let feedback = '';
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasNumbers = /[0-9]/.test(password);
+    const hasSpecial = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/.test(password);
+    const lengthCriteria = password.length >= 8;
+    const criteriaCount =
+        (hasLowerCase ? 1 : 0) +
+        (hasUpperCase ? 1 : 0) +
+        (hasNumbers ? 1 : 0) +
+        (hasSpecial ? 1 : 0) +
+        (lengthCriteria ? 1 : 0);
+    
+    switch (criteriaCount) {
+        case 0:
+        case 1:
+            strength = 'Very Weak';
+            color = 'red';
+            percentage = 20;
+            feedback = 'Add more character types and increase length.';
+            break;
+        case 2:
+            strength = 'Weak';
+            color = '#FF8C00';
+            percentage = 40;
+            feedback = 'Try adding special characters or uppercase letters.';
+            break;
+        case 3:
+            strength = 'Decent';
+            color = '#FFD700';
+            percentage = 60;
+            feedback = 'Good start! Add more variety or length for strength.';
+            break;
+        case 4:
+            strength = 'Good';
+            color = 'lightgreen';
+            percentage = 80;
+            feedback = 'Almost there! Increase length for maximum security.';
+            break;
+        case 5:
+            strength = 'Very Good';
+            color = 'green';
+            percentage = 100;
+            feedback = 'Excellent password! Very secure.';
+            break;
     }
-    .container {
-        padding: 15px;
-    }
-    h1 {
-        font-size: 24px;
-    }
-    .switch {
-        width: 40px;
-        height: 22px;
-        margin-left: 3px;
-    }
-    .slider {
-        border-radius: 11px;
-    }
-    .slider:before {
-        height: 16px;
-        width: 16px;
-        left: 2px;
-        bottom: 3px;
-    }
-    input:checked + .slider:before {
-        transform: translateX(20px);
-    }
-    body.dark-mode input:checked + .slider {
-        background-color: #1E90FF;
-    }
-    button {
-        font-size: 14px;
-        padding: 8px 12px;
-    }
-    .button-group {
-        flex-direction: column;
-        gap: 10px;
-    }
-    #generate, #regenerate {
-        width: 100%;
-    }
-    .toggle-label {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 10px;
-    }
-    .checkbox-group {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-    .toggle-container {
-        margin-bottom: 0;
-    }
-    .adsense-ad {
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
-    .settings {
-        margin-bottom: 30px;
-    }
-    .password-output {
-        margin-top: 20px;
-    }
-    .info-section h2 {
-        font-size: 18px;
-    }
-    .info-section p, .info-section li {
-        font-size: 14px;
-    }
+    return { strength, color, percentage, feedback };
 }
-/* Desktop Styling */
-@media (min-width: 601px) {
-    .adsense-ad {
-        margin-top: 40px;
-        margin-bottom: 40px;
+
+function generatePassword() {
+    const length = parseInt(document.getElementById('length').value);
+    const includeNumbers = document.getElementById('includeNumbers').checked;
+    const includeSpecial = document.getElementById('includeSpecial').checked;
+    const includeUppercase = document.getElementById('includeUppercase').checked;
+    const includeLowercase = document.getElementById('includeLowercase').checked;
+    let characters = '';
+    if (includeLowercase) characters += 'abcdefghijklmnopqrstuvwxyz';
+    if (includeUppercase) characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    if (includeNumbers) characters += '0123456789';
+    if (includeSpecial) characters += '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+    if (!characters) {
+        alert('Please select at least one character type.');
+        return;
     }
-    .settings {
-        margin-bottom: 40px;
+    let password = '';
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        password += characters[randomIndex];
     }
-    .password-output {
-        margin-top: 20px;
-    }
+    document.getElementById('password').value = password;
+    const { strength, color, percentage, feedback } = getPasswordStrength(password);
+    document.getElementById('progressFill').style.width = `${percentage}%`;
+    document.getElementById('progressFill').style.backgroundColor = color;
+    document.getElementById('strengthText').textContent = strength;
+    document.getElementById('strengthText').style.color = color;
+    document.getElementById('strengthFeedback').textContent = feedback;
 }
+
+document.getElementById('length').addEventListener('input', function () {
+    document.getElementById('lengthValue').textContent = this.value;
+});
+
+document.getElementById('generate').addEventListener('click', generatePassword);
+document.getElementById('regenerate').addEventListener('click', generatePassword);
+
+document.getElementById('copyBtn').addEventListener('click', function () {
+    const passwordField = document.getElementById('password');
+    passwordField.select();
+    passwordField.setSelectionRange(0, 99999); // For mobile devices
+    navigator.clipboard.writeText(passwordField.value).then(() => {
+        const notification = document.getElementById('copyNotification');
+        notification.style.opacity = 1;
+        setTimeout(() => notification.style.opacity = 0, 2000);
+    });
+});
+
+// Dark Mode Toggle
+document.getElementById('darkModeToggle').addEventListener('change', function () {
+    if (this.checked) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+});
