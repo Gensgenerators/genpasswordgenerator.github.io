@@ -1,3 +1,7 @@
+// Log to confirm script is running (remove after testing)
+console.log("Script loaded successfully");
+
+// Password strength logic
 function getPasswordStrength(password) {
     let strength = 'Very Weak';
     let color = 'red';
@@ -51,6 +55,7 @@ function getPasswordStrength(password) {
     return { strength, color, percentage, feedback };
 }
 
+// Generate password function
 function generatePassword() {
     const length = parseInt(document.getElementById('length').value);
     const includeNumbers = document.getElementById('includeNumbers').checked;
@@ -80,29 +85,62 @@ function generatePassword() {
     document.getElementById('strengthFeedback').textContent = feedback;
 }
 
-document.getElementById('length').addEventListener('input', function () {
-    document.getElementById('lengthValue').textContent = this.value;
-});
-
-document.getElementById('generate').addEventListener('click', generatePassword);
-document.getElementById('regenerate').addEventListener('click', generatePassword);
-
-document.getElementById('copyBtn').addEventListener('click', function () {
-    const passwordField = document.getElementById('password');
-    passwordField.select();
-    passwordField.setSelectionRange(0, 99999); // For mobile devices
-    navigator.clipboard.writeText(passwordField.value).then(() => {
-        const notification = document.getElementById('copyNotification');
-        notification.style.opacity = 1;
-        setTimeout(() => notification.style.opacity = 0, 2000);
+// Event listeners with error handling
+const lengthInput = document.getElementById('length');
+if (lengthInput) {
+    lengthInput.addEventListener('input', function () {
+        document.getElementById('lengthValue').textContent = this.value;
     });
-});
+} else {
+    console.error("Element #length not found");
+}
 
-// Dark Mode Toggle
-document.getElementById('darkModeToggle').addEventListener('change', function () {
-    if (this.checked) {
-        document.body.classList.add('dark-mode');
-    } else {
-        document.body.classList.remove('dark-mode');
-    }
-});
+const generateBtn = document.getElementById('generate');
+if (generateBtn) {
+    generateBtn.addEventListener('click', generatePassword);
+} else {
+    console.error("Element #generate not found");
+}
+
+const regenerateBtn = document.getElementById('regenerate');
+if (regenerateBtn) {
+    regenerateBtn.addEventListener('click', generatePassword);
+} else {
+    console.error("Element #regenerate not found");
+}
+
+const copyBtn = document.getElementById('copyBtn');
+if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+        const passwordField = document.getElementById('password');
+        if (passwordField) {
+            passwordField.select();
+            passwordField.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(passwordField.value).then(() => {
+                const notification = document.getElementById('copyNotification');
+                if (notification) {
+                    notification.style.opacity = 1;
+                    setTimeout(() => notification.style.opacity = 0, 2000);
+                }
+            });
+        } else {
+            console.error("Element #password not found");
+        }
+    });
+} else {
+    console.error("Element #copyBtn not found");
+}
+
+const darkModeToggle = document.getElementById('darkModeToggle');
+if (darkModeToggle) {
+    darkModeToggle.addEventListener('change', function () {
+        console.log("Dark mode toggled:", this.checked); // Debugging
+        if (this.checked) {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    });
+} else {
+    console.error("Element #darkModeToggle not found");
+}
