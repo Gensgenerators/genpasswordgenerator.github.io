@@ -29,10 +29,14 @@ h1 {
     margin: 0;
     color: #333;
 }
+h1 i {
+    margin-right: 8px;
+}
 p {
     text-align: center;
-    color: #666;
+    color: #333; /* Darker for better visibility in light mode */
     margin-bottom: 30px;
+    font-size: 16px;
 }
 .settings {
     margin-bottom: 40px;
@@ -103,6 +107,9 @@ input:focus + .slider {
 input:checked + .slider:before {
     transform: translateX(28px);
 }
+body.dark-mode input:checked + .slider {
+    background-color: #1E90FF; /* Bright blue for dark mode */
+}
 /* Toggle Label Adjustments */
 .toggle-label {
     display: inline-flex;
@@ -110,9 +117,8 @@ input:checked + .slider:before {
     gap: 5px;
     margin-bottom: 10px;
 }
-/* New Toggle Container */
 .toggle-container {
-    margin-bottom: 10px; /* Added margin to separate each toggle container */
+    margin-bottom: 10px;
 }
 /* Password Strength Progress Bar */
 .strength-output {
@@ -127,11 +133,17 @@ input:checked + .slider:before {
 }
 .progress-fill {
     height: 100%;
-    transition: width 0.3s ease;
+    transition: width 0.5s ease-in-out, background-color 0.3s ease;
 }
 .strength-text {
     margin-top: 10px;
     font-weight: bold;
+}
+.strength-feedback {
+    display: block;
+    font-size: 14px;
+    color: #333; /* Darker for visibility */
+    margin-top: 5px;
 }
 #copyNotification {
     display: none;
@@ -146,7 +158,6 @@ button {
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%;
     font-size: 16px;
     margin-top: 20px;
 }
@@ -155,6 +166,17 @@ button:hover {
 }
 button:active {
     background-color: #1565C0;
+}
+button:focus {
+    outline: 2px solid #1E88E5;
+    outline-offset: 2px;
+}
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+#generate, #regenerate {
+    width: 50%;
 }
 button#copyBtn {
     width: auto;
@@ -171,11 +193,53 @@ input[type="text"] {
 }
 input[type="text"]:focus {
     border-color: #1E88E5;
+    outline: 2px solid #1E88E5;
+    outline-offset: 2px;
+}
+/* Info Section Styling */
+.info-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+.info-section h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+.info-section p {
+    text-align: left;
+    color: #333; /* Explicitly set for visibility */
+    margin: 10px 0;
+    font-size: 16px;
+}
+.info-section ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 10px 0;
+}
+.info-section li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+    color: #333; /* Ensure list items are visible */
+}
+.info-section li:before {
+    content: "\f00c"; /* Font Awesome checkmark */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #1E88E5;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+.info-section strong {
+    color: #333;
 }
 /* Dark Mode Styles */
 body.dark-mode {
     background-color: #333;
-    color: #eee;
+    color: #ddd; /* Brighter for better contrast in dark mode */
 }
 body.dark-mode .container {
     background-color: #444;
@@ -185,7 +249,7 @@ body.dark-mode h1 {
     color: #fff;
 }
 body.dark-mode p {
-    color: #ccc;
+    color: #ddd; /* Brighter for visibility in dark mode */
 }
 body.dark-mode .settings {
     margin-bottom: 40px;
@@ -199,27 +263,32 @@ body.dark-mode .slider {
 body.dark-mode input[type="text"] {
     border-color: #555;
 }
-body.dark-mode footer {
-    color: #999;
-}
-body.dark-mode footer a {
-    color: #666;
-}
-body.dark-mode footer a:hover {
-    color: #1E88E5;
-}
-body.dark-mode .dark-mode-toggle {
-    flex-direction: row;
-    justify-content: space-between;
-}
-body.dark-mode .toggle-label {
-    color: #fff;
+body.dark-mode .strength-feedback {
+    color: #ddd; /* Brighter for visibility */
 }
 body.dark-mode .progress-bar {
     background-color: #555;
 }
 body.dark-mode .progress-fill {
     background-color: #1E88E5;
+}
+body.dark-mode .info-section {
+    border-top-color: #555;
+}
+body.dark-mode .info-section h2 {
+    color: #fff;
+}
+body.dark-mode .info-section p {
+    color: #ddd; /* Ensure info section paragraphs are visible */
+}
+body.dark-mode .info-section li {
+    color: #ddd; /* Ensure list items are visible */
+}
+body.dark-mode .info-section strong {
+    color: #eee;
+}
+body.dark-mode .info-section li:before {
+    color: #1E90FF;
 }
 /* Mobile Styling */
 @media (max-width: 600px) {
@@ -249,9 +318,19 @@ body.dark-mode .progress-fill {
     input:checked + .slider:before {
         transform: translateX(20px);
     }
+    body.dark-mode input:checked + .slider {
+        background-color: #1E90FF;
+    }
     button {
         font-size: 14px;
         padding: 8px 12px;
+    }
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    #generate, #regenerate {
+        width: 100%;
     }
     .toggle-label {
         display: flex;
@@ -266,11 +345,11 @@ body.dark-mode .progress-fill {
         margin-bottom: 20px;
     }
     .toggle-container {
-        margin-bottom: 0; /* Remove margin since flex direction is column */
+        margin-bottom: 0;
     }
     .adsense-ad {
         margin-top: 30px;
-        margin-bottom: 30px; /* Added margin below the ad */
+        margin-bottom: 30px;
     }
     .settings {
         margin-bottom: 30px;
@@ -278,12 +357,18 @@ body.dark-mode .progress-fill {
     .password-output {
         margin-top: 20px;
     }
+    .info-section h2 {
+        font-size: 18px;
+    }
+    .info-section p, .info-section li {
+        font-size: 14px;
+    }
 }
 /* Desktop Styling */
 @media (min-width: 601px) {
     .adsense-ad {
         margin-top: 40px;
-        margin-bottom: 40px; /* Added margin below the ad */
+        margin-bottom: 40px;
     }
     .settings {
         margin-bottom: 40px;
